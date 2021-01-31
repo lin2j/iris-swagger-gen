@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option go_package="message";
+package message;
+
+message Request {
+  // 消息
+  string Msg = 1;
+}
+
+message Response {
+  // 响应内容
+  string Msg = 1;
+}

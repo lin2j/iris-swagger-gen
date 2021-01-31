@@ -1,0 +1,133 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "service.proto",
+    "version": "V1.0.0"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/echo": {
+      "get": {
+        "summary": "Get 请求回显发送的请求内容",
+        "operationId": "EchoService_Echo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Msg",
+            "description": "消息.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EchoService"
+        ]
+      }
+    },
+    "/echo2": {
+      "post": {
+        "summary": "Post 请求回显发送的请求内容",
+        "operationId": "EchoService_Echo2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/messageRequest"
+            }
+          }
+        ],
+        "tags": [
+          "EchoService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "messageRequest": {
+      "type": "object",
+      "properties": {
+        "Msg": {
+          "type": "string",
+          "title": "消息"
+        }
+      }
+    },
+    "messageResponse": {
+      "type": "object",
+      "properties": {
+        "Msg": {
+          "type": "string",
+          "title": "响应内容"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

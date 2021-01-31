@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "message.proto";
+package message;
+
+service EchoService {
+  /*
+    Get 请求回显发送的请求内容
+   */
+  rpc Echo(message.Request) returns (message.Response) {}
+
+  /*
+    Post 请求回显发送的请求内容
+   */
+  rpc Echo2(message.Request) returns (message.Response) {}
+}

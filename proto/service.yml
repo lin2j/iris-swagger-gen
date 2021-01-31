@@ -1,0 +1,10 @@
+type: google.api.service
+config_version: 3
+
+http:
+  rules:
+    - selector: message.EchoService.Echo
+      get: /echo
+    - selector: message.EchoService.Echo2
+      post: /echo2
+      body: "*"
