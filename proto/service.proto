@@ -13,4 +13,9 @@ service EchoService {
     Post 请求回显发送的请求内容
    */
   rpc Echo2(message.Request) returns (message.Response) {}
+
+  /*
+    Delete 请求回显发送的请求内容
+ */
+  rpc Echo3(message.Request) returns (message.Response) {}
 }

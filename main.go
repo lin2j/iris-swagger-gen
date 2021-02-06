@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/context"
 	"log"
@@ -11,9 +12,13 @@ func main() {
 	app := iris.New()
 	app.Get("/echo", handler)
 	app.Post("/echo2", handler2)
+	app.Delete("/echo3", handler2)
 	// swagger 页面的 url，因为目录下有个 index.html 文件
 	// 打开页面后会自动加载
 	app.HandleDir("/swagger/", "./swagger")
+	for _, r := range app.GetRoutes() {
+		log.Println(fmt.Sprintf("%-8s", r.Method) + r.Path)
+	}
 	if err := app.Run(iris.Addr(":8080")); err != nil {
 		log.Fatal(err)
 	}

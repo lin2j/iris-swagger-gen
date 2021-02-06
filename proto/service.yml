@@ -8,3 +8,6 @@ http:
     - selector: message.EchoService.Echo2
       post: /echo2
       body: "*"
+    - selector: message.EchoService.Echo3
+      delete: /echo3
+      body: "*"
