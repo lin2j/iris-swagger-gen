@@ -10,12 +10,14 @@ import (
 
 func main() {
 	app := iris.New()
+	// 演示三种请求2
 	app.Get("/echo", handler)
 	app.Post("/echo2", handler2)
 	app.Delete("/echo3", handler2)
 	// swagger 页面的 url，因为目录下有个 index.html 文件
 	// 打开页面后会自动加载
 	app.HandleDir("/swagger/", "./swagger")
+	// 打印接口的基本信息
 	for _, r := range app.GetRoutes() {
 		log.Println(fmt.Sprintf("%-8s", r.Method) + r.Path)
 	}
@@ -26,7 +28,7 @@ func main() {
 
 func handler(ctx context.Context) {
 	r := message.Request{}
-	// 处理 Get 请求，从url参数中获取数据
+	// 从url参数、表单中获取数据
 	_ = ctx.ReadForm(&r)
 	log.Println("receive message:", r.Msg)
 	resp := message.Response{
@@ -37,7 +39,7 @@ func handler(ctx context.Context) {
 
 func handler2(ctx context.Context) {
 	r := message.Request{}
-	// 处理 Post 请求，从请求体中获取数据
+	// 从请求体中获取数据
 	_ = ctx.ReadJSON(&r)
 	log.Println("receive message:", r.Msg)
 	resp := message.Response{
